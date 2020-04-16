@@ -41,13 +41,14 @@ command:
   # Identifier
   1:
     # This is the command that is checked
-    execution: "/easycc"
+    execution: '/easycc'
     # the permission to bypass the cooldown
-    bypass: "easycc.admin"
+    bypass: 'easycc.admin'
     # You can add as many cooldowns as you like (no doubles) Cooldown in seconds.
     # 1 min = 60 sec, 1 hour = 3600 sec, 1 Day = 86400
     # If someone has permission for multiple cooldowns, the lowest cooldown is taken
-    # If you are using Luckperms: enter "group.groupname" to allow a group to use the command
+    # If someone has no permission for any of the cooldown, the highest is taken.
+    # If you are using Luckperms: enter "group.groupname" to allow a group to use the command.
     cooldowns:
       15: 'easycc.default'
       10: 'easycc.donor'
@@ -55,12 +56,13 @@ command:
       0: 'easycc.admin'
 
 # The messages which appear ingame. Change to you liking. (Use 2 single quotes ('') to escape a single quote)
+# Minecraft Formatting Codes are supported.
 message:
   # Prefix of the messages, if you don't want to use a prefix leave single quotes ('')
   plugin_prefix: '&7&l[&2&lEasy&f&lCommand&7&l] &f'
   no-permission: '&7You don''t have permission to use this command!'
-  # You can use {time} to show in seconds or {timeFormatted} for time in "hrs, min, sec"
-  command-on-cooldown: '&7you have to wait &2{timeFormatted} &7to use {command} again'
+  # You can use {time} to show in seconds or %timeFormatted% for time in "hrs, min, sec"
+  command-on-cooldown: '&7you have to wait &2%timeFormatted% &7to use %command% again'
 
 ```
 ### Good to know
