@@ -14,15 +14,17 @@ It relies on an easy to understand configuration file.
 
 ### Commands
 
-```yml
-/easycc reload #reload the configuration on runtime for easy file-editing and updating.
-```
+```/easycc reload``` The only Command. Reload the configuration on runtime for easy file-editing and updating.
+
+
+### Permission
+```easycc.admin``` the only hardcoded permission. Only used for the ```/reload``` command
 
 ### Configuration
 The configuration file has comments for each option to ensure a fast and easy setup.
 If you want to restore the defaults, simply delete the configuration and use the ```/reload``` command or restart your Server
 
-```yml
+```yaml
 #----------------------------------------
 #Easy Command Cooldown configuration file.
 #----------------------------------------
