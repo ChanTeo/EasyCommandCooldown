@@ -2,13 +2,18 @@ package me.easyplugins.commandcooldown.listener;
 
 import me.easyplugins.commandcooldown.Main;
 import me.easyplugins.commandcooldown.enumerator.EasyMessage;
+import me.easyplugins.commandcooldown.enumerator.EasyTimeFormat;
 import me.easyplugins.commandcooldown.handle.CooldownCommand;
 import me.easyplugins.commandcooldown.handle.PlayerCooldown;
+import me.easyplugins.commandcooldown.util.EasyUtil;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+
+import java.util.Map;
+import java.util.TreeMap;
 
 
 public class PlayerPreCommandListener implements Listener {
@@ -31,7 +36,6 @@ public class PlayerPreCommandListener implements Listener {
         if(player.hasPermission(cooldownCommand.getBypass())) return;
 
         // is Command in Cooldown?
-
         String identifier = cooldownCommand.getIdentifier();
 
         PlayerCooldown playerCooldown = Main.COOLDOWNS.stream()
@@ -41,32 +45,23 @@ public class PlayerPreCommandListener implements Listener {
 
         if(playerCooldown != null){
             if(playerCooldown.getEarliestExecution() > System.currentTimeMillis()){
-                player.spigot().sendMessage(TextComponent.fromLegacyText(Main.PLUGIN.getMainConfig().getMessage(EasyMessage.COMMAND_ON_COOLDOWN)));
+                long remainingTime = System.currentTimeMillis() - playerCooldown.getEarliestExecution();
+                player.spigot().sendMessage(TextComponent.fromLegacyText(EasyUtil.formatTime(Main.PLUGIN.getMainConfig().getMessage(EasyMessage.COMMAND_ON_COOLDOWN),remainingTime, EasyTimeFormat.HMS).replace("%command%",playerCooldown.getCommand())));
                 event.setCancelled(true);
-                return;
             }else{
                 Main.COOLDOWNS.remove(playerCooldown);
-                return;
             }
         }else{
-
-
-
-
-
-
-
-            return;
+            int cooldown = cooldownCommand.getHighestCooldown();
+            Map<Integer,String> sorted = new TreeMap<>(cooldownCommand.getCooldowns());
+            for(Map.Entry<Integer,String> entry : sorted.entrySet()){
+                if(player.hasPermission(entry.getValue())){
+                    cooldown = entry.getKey();
+                    break;
+                }
+            }
+            Main.COOLDOWNS.add(new PlayerCooldown(player,cooldownCommand.getIdentifier(),System.currentTimeMillis(),cooldown));
         }
-
-
-
-
-
-
-
-
-
     }
 
 

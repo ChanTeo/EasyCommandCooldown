@@ -11,6 +11,7 @@ public class CooldownCommand {
     private String execution;
     private String bypass;
     private Map<Integer, String> cooldowns;
+    private int highestCooldown = 0;
 
 
     public CooldownCommand(String identifier){
@@ -18,6 +19,7 @@ public class CooldownCommand {
         execution = Main.PLUGIN.getConfig().getString("command."+identifier+".execution");
         Main.PLUGIN.getConfig().getConfigurationSection("command."+identifier+".cooldowns").getKeys(false)
                 .forEach(cooldown->{
+                    if(Integer.parseInt(cooldown) > highestCooldown) highestCooldown = Integer.parseInt(cooldown);
                     cooldowns.put(Integer.valueOf(cooldown),Main.PLUGIN.getConfig().getString("command."+identifier+".cooldowns."+cooldown));
                 });
     }
@@ -38,5 +40,7 @@ public class CooldownCommand {
         return cooldowns;
     }
 
-
+    public int getHighestCooldown() {
+        return highestCooldown;
+    }
 }

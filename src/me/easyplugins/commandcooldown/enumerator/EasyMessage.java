@@ -22,4 +22,5 @@ public enum EasyMessage {
     public String getDefault() {
         return identifier;
     }
+
 }
