@@ -2,31 +2,30 @@ package me.easyplugins.commandcooldown;
 
 import me.easyplugins.commandcooldown.enumerator.EasyMessage;
 import me.easyplugins.commandcooldown.handle.CooldownCommand;
-
+import me.easyplugins.commandcooldown.util.EasyUtil;
 import java.io.File;
-import java.sql.SQLOutput;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class EasyConfig {
 
-    private Set<CooldownCommand> commands;
-    private Map<EasyMessage, String> configMessages;
+    private final Set<CooldownCommand> commands = new HashSet<>();
+    private final Map<EasyMessage, String> configMessages = new HashMap<>();
     private Boolean useStatistics;
 
     //Internal messages for console
     private final String internalPrefix = "&2Easy&7Command &2>> &f";
-    private final String commandsLoaded = "{commands} have been loaded";
+    private final String commandsLoaded = internalPrefix +"{commands} have been loaded";
     private final String reloadConfig = internalPrefix + "&7Reloading config.yml...";
     private final String configNotFound = internalPrefix + "&7Config not found. Creating Default...";
     private final String pluginEnabled = internalPrefix
             + "&7created by&2 " + Main.PLUGIN.getDescription().getAuthors().stream().findFirst()
             + " &7version &2"+Main.PLUGIN.getDescription().getVersion()
             + "&7, enabled Enjoy!";
+    private final String commandUsage = internalPrefix + "&7Command Usage: &2/easycc reload&f";
 
     public void init(){
         Main.PLUGIN.getConfig().options().copyDefaults(true);
+        useStatistics = Main.PLUGIN.getConfig().getBoolean("general.usestatistics",true);
         Main.PLUGIN.saveConfig();
         commands.clear();
         loadCollections();
@@ -58,7 +57,7 @@ public class EasyConfig {
     }
 
     public String getMessage(EasyMessage message){
-        return configMessages.get(message);
+        return EasyUtil.colorize(configMessages.get(message));
     }
 
     private void loadCollections(){
@@ -69,19 +68,29 @@ public class EasyConfig {
         }
 
         if(Main.PLUGIN.getConfig().getConfigurationSection("message") != null){
-            Arrays.stream(EasyMessage.values()).forEach(easyMessage->{
-                this.configMessages.put(easyMessage,Main.PLUGIN.getConfig().getString(easyMessage.getIndex(),easyMessage.getDefault()));
-            });
+            Arrays.stream(EasyMessage.values()).forEach(easyMessage-> this.configMessages.put(easyMessage,Main.PLUGIN.getConfig().getString(easyMessage.getIndex(),easyMessage.getDefault())));
         }else{
             System.out.println();
         }
     }
 
     public String getInternalPrefix() {
-        return internalPrefix;
+        return EasyUtil.colorize(internalPrefix);
     }
 
-    public String getPluginEnabled() {
-        return pluginEnabled;
+    String getPluginEnabled() {
+        return EasyUtil.colorize(pluginEnabled);
+    }
+
+    public String getCommandUsage() {
+        return EasyUtil.colorize(commandUsage);
+    }
+
+    public String getCommandsLoaded() {
+        return EasyUtil.colorize(commandsLoaded);
+    }
+
+    public Boolean getUseStatistics() {
+        return useStatistics;
     }
 }

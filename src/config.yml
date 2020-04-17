@@ -1,40 +1,61 @@
-#----------------------------------------
-#Easy Command Cooldown configuration file.
-#----------------------------------------
+#############################################################################
+# ───────────────────────────────────────────────────────────────────────────
+#                 _____                ____  __
+#                | ____|__ _ ___ _   _|  _ \| |_   _  __ _(_)_ __
+#               |  _| / _` / __| | | | |_) | | | | |/ _` | | '_ \
+#              | |__| (_| \__ \ |_| |  __/| | |_| | (_| | | | | |
+#             |_____\__,_|___/\__, |_|   |_|\__,_|\__, |_|_| |_|
+#             easyplugin.net  |___/               |___/
 #
+# ───────────────────────────────────────────────────────────────────────────
+#                              Configuration File
+# ──────────────────────────────── General ─────────────────────────────────
+#
+#  version: 1.0                 The version of the config (Don't change)
+#
+#  useStatistics: [true|false]  This sends usage Statistics to bstats.org.
+#                               and helps me improving the Plugin.
+#
+# ──────────────────────────────── Command ─────────────────────────────────
+#
+# command:
+#   1:              [number]         Has to be numerical, used as an iterator. No duplicates!
+#     execution:    ['text']         This is the command for which you want a cooldown. No duplicates!
+#     bypass:       ['text']         This is the permission to have "0" cooldown/bypass
+#     cooldowns:
+#       25:         [number:'text']  Number in seconds and the permission needed. You can
+#       15:                          add as many as you want but each cooldown only once.
+#       10:                          If there is no permission but a cooldown, the highest
+#       5:                           cooldown is taken. If someone has multiple permissions
+#       3:                           the lowest cooldown is taken.
+#
+# ──────────────────────────────── message ─────────────────────────────────
+#                             (Supports Colors)
+#
+#  plugin-prefix:        ['text']    The Prefix for messages. Leave '' if not required
+#  no-permission:        ['text']    The message that appears if someone ha sno perms for /easycc reload
+#  command-on-cooldown:  ['text']    The message that appears ff a command is on cooldown.
+#                                    use %time% to display in seconds use %timeformatted% to display hrs,min,sec
+#                                    %command% is replaced with the selected command
+#
+# ──────────────────────────────────────────────────────────────────────────
+############################################################################
 general:
-  # don't change. This is to verify if the config is missing something.
   version: 1.0
-  # This sends usage Statistics to bstats.org. This Helps me improving the Plugin.
-  # you can disable it any time.
   useStatistics: true;
-
-# Add as many "commands" as you like. The identifier can be anything you like but has to be unique
 command:
-  # Identifier
   1:
-    # This is the command that is checked
-    execution: "/easycc"
-    # the permission to bypass the cooldown (change it to you liking)
-    bypass: "easycc.admin"
-    # You can add as many cooldowns as you like (no doubles) Cooldown in seconds.
-    # 1 min = 60 sec, 1 hour = 3600 sec, 1 Day = 86400
-    # if someone has permission for multiple cooldowns, the lowest cooldown is taken
-    # if someone doesnt have any of the permissions, the highest cooldown is taken
-    # If you are using Luckperms: enter "group.groupname" to allow a group to use the command
+    execution: '/easycc'
+    bypass: 'easycc.admin'
     cooldowns:
       15: 'easycc.default'
       10: 'easycc.donor'
       5: 'easycc.donor2'
       0: 'easycc.admin'
-
-# The messages which appear ingame. Change to you liking. (Use 2 single quotes ('') to escape a single quote)
 message:
-  # Prefix of the messages, if you don't want to use a prefix leave single quotes ('')
   plugin_prefix: '&7&l[&2&lEasy&f&lCommand&7&l] &f'
   no-permission: '&7You don''t have permission to use this command!'
-  # You can use %time% to show in seconds or %timeformatted% for time in "hrs, min, sec"
-  command-on-cooldown: '&7you have to wait &2%timeFormatted% &7to use %command% again'
+  command-on-cooldown: '&7You have to wait &2%timeFormatted% &7to use %command% again'
 
 
 

@@ -2,15 +2,14 @@ package me.easyplugins.commandcooldown.handle;
 
 import me.easyplugins.commandcooldown.Main;
 
-import java.util.Map;
-import java.util.Set;
+import java.util.TreeMap;
 
 public class CooldownCommand {
 
     private String identifier;
     private String execution;
     private String bypass;
-    private Map<Integer, String> cooldowns;
+    private TreeMap<Integer, String> cooldowns = new TreeMap<>();
     private int highestCooldown = 0;
 
 
@@ -22,6 +21,7 @@ public class CooldownCommand {
                     if(Integer.parseInt(cooldown) > highestCooldown) highestCooldown = Integer.parseInt(cooldown);
                     cooldowns.put(Integer.valueOf(cooldown),Main.PLUGIN.getConfig().getString("command."+identifier+".cooldowns."+cooldown));
                 });
+        bypass = Main.PLUGIN.getConfig().getString("coammdn."+identifier+".bypass");
     }
 
     public String getIdentifier() {
@@ -36,7 +36,7 @@ public class CooldownCommand {
         return bypass;
     }
 
-    public Map<Integer, String> getCooldowns() {
+    public TreeMap<Integer, String> getCooldowns() {
         return cooldowns;
     }
 

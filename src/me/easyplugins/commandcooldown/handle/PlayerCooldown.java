@@ -1,27 +1,24 @@
 package me.easyplugins.commandcooldown.handle;
 
-import me.easyplugins.commandcooldown.Main;
-import org.bukkit.entity.Player;
-
 public class PlayerCooldown {
 
-    Player player;
+    String playerName;
     String command;
     Long lastExecution;
     Long cooldown;
     Long earliestExecution;
 
 
-    public PlayerCooldown(Player player, String command,long lastExecution, long cooldown){
-        this.player = player;
+    public PlayerCooldown(String playerName, String command,long lastExecution, long cooldown){
+        this.playerName = playerName;
         this.command = command;
         this.lastExecution = lastExecution;
         this.cooldown = cooldown*1000;
         this.earliestExecution = this.cooldown + this.lastExecution;
     }
 
-    public Player getPlayer() {
-        return player;
+    public String getPlayerName() {
+        return playerName;
     }
 
     public String getCommand() {

@@ -1,6 +1,7 @@
 package me.easyplugins.commandcooldown.util;
 
 import me.easyplugins.commandcooldown.enumerator.EasyTimeFormat;
+import org.bukkit.ChatColor;
 
 public class EasyUtil {
 
@@ -31,6 +32,11 @@ public class EasyUtil {
 
         return "";
     }
+
+    public static String colorize(String text){
+        return ChatColor.translateAlternateColorCodes('&',text);
+    }
+
 
     private static long[] getRemainingTimeFormatted(long timeinMillis) {
 
