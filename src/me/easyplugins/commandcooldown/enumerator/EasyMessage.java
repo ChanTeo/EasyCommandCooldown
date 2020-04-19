@@ -4,7 +4,7 @@ public enum EasyMessage {
 
     PLUGIN_PREFIX("plugin_prefix", "&7&l[&2&lEasy&f&lCC&7&l] &f"),
     NO_PERMISSION("no-permission", "&7You don't have permission to use this command!"),
-    COMMAND_ON_COOLDOWN("command-on-cooldown","&7you have to wait &2{hrs} {min} {sec} to use {command} again");
+    COMMAND_ON_COOLDOWN("command-on-cooldown","&7You have to wait &2{hrs} {min} {sec} to use {command} again");
     private String identifier;
     private String defaultMessage;
 

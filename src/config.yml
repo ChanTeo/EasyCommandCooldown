@@ -1,22 +1,18 @@
-#############################################################################
-# ───────────────────────────────────────────────────────────────────────────
-#                 _____                ____  __
-#                | ____|__ _ ___ _   _|  _ \| |_   _  __ _(_)_ __
-#               |  _| / _` / __| | | | |_) | | | | |/ _` | | '_ \
-#              | |__| (_| \__ \ |_| |  __/| | |_| | (_| | | | | |
+#              _____                ____  __
+#             | ____|__ _ ___ _   _|  _ \| |_   _  __ _(_)_ __
+#             |  _| / _` / __| | | | |_) | | | | |/ _` | | '_ \
+#             | |__| (_| \__ \ |_| |  __/| | |_| | (_| | | | | |
 #             |_____\__,_|___/\__, |_|   |_|\__,_|\__, |_|_| |_|
 #             easyplugin.net  |___/               |___/
 #
-# ───────────────────────────────────────────────────────────────────────────
-#                              Configuration File
-# ──────────────────────────────── General ─────────────────────────────────
+# GENERAL:
 #
 #  version: 1.0                 The version of the config (Don't change)
 #
 #  useStatistics: [true|false]  This sends usage Statistics to bstats.org.
 #                               and helps me improving the Plugin.
 #
-# ──────────────────────────────── Command ─────────────────────────────────
+# COMMANDS
 #
 # command:
 #   1:              [number]         Has to be numerical, used as an iterator. No duplicates!
@@ -29,8 +25,8 @@
 #       5:                           cooldown is taken. If someone has multiple permissions
 #       3:                           the lowest cooldown is taken.
 #
-# ──────────────────────────────── message ─────────────────────────────────
-#                             (Supports Colors)
+# MESSAGES
+# (Supports Colors)
 #
 #  plugin-prefix:        ['text']    The Prefix for messages. Leave '' if not required
 #  no-permission:        ['text']    The message that appears if someone ha sno perms for /easycc reload
@@ -38,7 +34,6 @@
 #                                    use %time% to display in seconds use %timeformatted% to display hrs,min,sec
 #                                    %command% is replaced with the selected command
 #
-# ──────────────────────────────────────────────────────────────────────────
 ############################################################################
 general:
   version: 1.0
@@ -53,10 +48,6 @@ command:
       5: 'easycc.donor2'
       0: 'easycc.admin'
 message:
-  plugin_prefix: '&7&l[&2&lEasy&f&lCommand&7&l] &f'
+  plugin_prefix: '&7[&2Easy&7CC&7] &f'
   no-permission: '&7You don''t have permission to use this command!'
-  command-on-cooldown: '&7You have to wait &2%timeFormatted% &7to use %command% again'
-
-
-
-
+  command-on-cooldown: '&7You have to wait &2%timeformatted% &7to use &2%command%&7 again'

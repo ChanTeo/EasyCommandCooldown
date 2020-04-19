@@ -4,6 +4,7 @@ import me.easyplugins.commandcooldown.command.baseCommand;
 import me.easyplugins.commandcooldown.handle.PlayerCooldown;
 import me.easyplugins.commandcooldown.listener.PlayerPreCommandListener;
 import me.easyplugins.commandcooldown.metric.Metrics;
+import me.easyplugins.commandcooldown.util.EasyUtil;
 import org.bukkit.Bukkit;
 
 import org.bukkit.plugin.PluginManager;
@@ -17,16 +18,17 @@ public class Main extends JavaPlugin {
     public static Main PLUGIN;
     public static List<PlayerCooldown> COOLDOWNS = new ArrayList<>();
     private EasyConfig config;
-    private final int PluginID = 7163;
-    private Metrics metrics;
 
     @Override
     public void onEnable() {
         PLUGIN = this;
         config = new EasyConfig();
         config.init();
-        System.out.println(config.getPluginEnabled());
-        if(config.getUseStatistics()) metrics = new Metrics(this,PluginID);
+        config.save();
+        Bukkit.getConsoleSender().sendMessage(EasyUtil.colorize(config.getPluginEnabled()));
+        if(config.getUseStatistics()) new Metrics(this);
+        registerListener();
+        registerCommands();
     }
 
     public EasyConfig getMainConfig() {

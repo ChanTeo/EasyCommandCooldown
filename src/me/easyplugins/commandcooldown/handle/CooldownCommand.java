@@ -21,7 +21,7 @@ public class CooldownCommand {
                     if(Integer.parseInt(cooldown) > highestCooldown) highestCooldown = Integer.parseInt(cooldown);
                     cooldowns.put(Integer.valueOf(cooldown),Main.PLUGIN.getConfig().getString("command."+identifier+".cooldowns."+cooldown));
                 });
-        bypass = Main.PLUGIN.getConfig().getString("coammdn."+identifier+".bypass");
+        bypass = Main.PLUGIN.getConfig().getString("command."+identifier+".bypass");
     }
 
     public String getIdentifier() {

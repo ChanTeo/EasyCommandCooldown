@@ -43,7 +43,13 @@ public class PlayerPreCommandListener implements Listener {
             if(pcd.getPlayerName().equals(player.getName())){
                 if(event.getMessage().startsWith(pcd.getCommand())){
                     if(pcd.getEarliestExecution() > System.currentTimeMillis()){
-                        player.spigot().sendMessage(TextComponent.fromLegacyText(Main.PLUGIN.getMainConfig().getMessage(EasyMessage.PLUGIN_PREFIX) + EasyUtil.formatTime(Main.PLUGIN.getMainConfig().getMessage(EasyMessage.COMMAND_ON_COOLDOWN),pcd.getEarliestExecution()-System.currentTimeMillis(), EasyTimeFormat.HMS).replace("%command%",pcd.getCommand())));
+                        player.spigot().sendMessage(
+                                TextComponent.fromLegacyText(
+                                        Main.PLUGIN.getMainConfig().getMessage(EasyMessage.PLUGIN_PREFIX)
+                                      + EasyUtil.formatTime(Main.PLUGIN.getMainConfig().getMessage(EasyMessage.COMMAND_ON_COOLDOWN),
+                                                pcd.getEarliestExecution()-System.currentTimeMillis(),
+                                                EasyTimeFormat.HMS).replace("%command%",pcd.getCommand())));
+
                         event.setCancelled(true);
                         return;
                     }
