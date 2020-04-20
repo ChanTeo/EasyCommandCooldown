@@ -1,6 +1,6 @@
 package me.easyplugins.commandcooldown;
 
-import me.easyplugins.commandcooldown.command.baseCommand;
+import me.easyplugins.commandcooldown.command.BaseCommand;
 import me.easyplugins.commandcooldown.handle.PlayerCooldown;
 import me.easyplugins.commandcooldown.listener.PlayerPreCommandListener;
 import me.easyplugins.commandcooldown.metric.Metrics;
@@ -24,7 +24,6 @@ public class Main extends JavaPlugin {
         PLUGIN = this;
         config = new EasyConfig();
         config.init();
-        config.save();
         Bukkit.getConsoleSender().sendMessage(EasyUtil.colorize(config.getPluginEnabled()));
         if(config.getUseStatistics()) new Metrics(this);
         registerListener();
@@ -41,7 +40,7 @@ public class Main extends JavaPlugin {
     }
 
     private void registerCommands(){
-        this.getCommand("easycc").setExecutor(new baseCommand());
+        EasyUtil.registerCommand(new BaseCommand());
     }
 
 

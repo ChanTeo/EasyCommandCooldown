@@ -1,10 +1,20 @@
 package me.easyplugins.commandcooldown.util;
 
 import me.easyplugins.commandcooldown.enumerator.EasyTimeFormat;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandMap;
+
+import java.lang.reflect.Field;
 
 public class EasyUtil {
 
+    /**
+     * @param message Text to format (include %time% or %timeformatted%)
+     * @param timeinMillis Time (Duration) in milliseconds
+     * @param timeFormat Rounded down to each Format. HMS for full format.
+     * @return
+     */
     public static String formatTime(String message, long timeinMillis, EasyTimeFormat timeFormat){
         switch(timeFormat){
             case MILLIS:
@@ -59,6 +69,19 @@ public class EasyUtil {
         if(value == 0 && blankZeo) return "";
         if(value > 1) return value + " " + multi;
         return value + " " + single;
+    }
+
+    public static void registerCommand(EasyCommand easyCommand){
+        try{
+            Field bukkitCommandMap = Bukkit.getServer().getClass().getDeclaredField("commandMap");
+
+            bukkitCommandMap.setAccessible(true);
+            CommandMap commandMap = (CommandMap) bukkitCommandMap.get(Bukkit.getServer());
+            commandMap.register(easyCommand.getName(), easyCommand);
+
+        }catch(NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e){
+            e.printStackTrace();
+        }
     }
 
 }

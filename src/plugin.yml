@@ -3,7 +3,3 @@ main: me.easyplugins.commandcooldown.Main
 description: "EasyCommandCooldown enables you to set a cooldown for each and every command."
 version: 1.0
 author: ChanTeo
-
-commands:
-  easycc:
-    permission: "easycc.admin"

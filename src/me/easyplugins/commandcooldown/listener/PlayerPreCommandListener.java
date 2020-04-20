@@ -1,7 +1,6 @@
 package me.easyplugins.commandcooldown.listener;
 
 import me.easyplugins.commandcooldown.Main;
-import me.easyplugins.commandcooldown.enumerator.EasyMessage;
 import me.easyplugins.commandcooldown.enumerator.EasyTimeFormat;
 import me.easyplugins.commandcooldown.handle.CooldownCommand;
 import me.easyplugins.commandcooldown.handle.PlayerCooldown;
