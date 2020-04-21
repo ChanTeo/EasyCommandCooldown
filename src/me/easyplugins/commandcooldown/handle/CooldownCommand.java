@@ -10,7 +10,7 @@ public class CooldownCommand {
     private String identifier;
     private String execution;
     private String bypass;
-    private TreeMap<Integer, String> cooldowns = new TreeMap<>();
+    private static TreeMap<Integer, String> cooldowns = new TreeMap<>();
     private int highestCooldown = 0;
     private ConfigurationSection commandSection;
     private ConfigurationSection cooldownSection;
@@ -27,14 +27,6 @@ public class CooldownCommand {
                     if(Integer.parseInt(cooldown) > highestCooldown) highestCooldown = Integer.parseInt(cooldown);
                     cooldowns.put(Integer.valueOf(cooldown),cooldownSection.getString(cooldown));
                 });
-    }
-
-    public CooldownCommand(String identifier, String execution, String bypass, TreeMap<Integer, String> cooldowns) {
-        this.identifier = identifier;
-        this.execution = execution;
-        this.bypass = bypass;
-        this.cooldowns = cooldowns;
-        add(this);
     }
 
     public static CooldownCommand get(String identifier){
@@ -72,14 +64,6 @@ public class CooldownCommand {
 
     public static ConfigurationSection getCommandSection(String identifier){
         return Main.PLUGIN.getConfig().getConfigurationSection("command."+identifier);
-    }
-
-    public static void add(CooldownCommand cooldownCommand){
-        Main.PLUGIN.getConfig().set("command."+cooldownCommand.getIdentifier()+".execution",cooldownCommand.getExecution());
-        Main.PLUGIN.getConfig().set("command."+cooldownCommand.getIdentifier()+".bypass",cooldownCommand.getBypass());
-        //cooldownCommand.getCooldowns().forEach((key, value) -> Main.PLUGIN.getConfig().set("command." + cooldownCommand.getIdentifier() + ".cooldowns." + key, value));
-        Main.PLUGIN.getConfig().createSection("command."+cooldownCommand.getIdentifier()+".cooldowns",cooldownCommand.cooldowns);
-        Main.PLUGIN.saveConfig();
     }
 
 }

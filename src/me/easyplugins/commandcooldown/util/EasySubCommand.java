@@ -6,7 +6,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public abstract class EasySubCommand {
-
+    /**
+     * EasyPlugin SubCommand.
+     * Async execution as it is called by EasyCommand
+     * automated permission and argument-Exception and handling.
+     */
     private String name;
     private int expectedArgs;
     private int maximumArgs;

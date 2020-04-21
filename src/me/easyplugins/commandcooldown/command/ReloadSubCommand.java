@@ -23,7 +23,7 @@ public class ReloadSubCommand extends EasySubCommand {
 
     @Override
     public String getPermission() {
-        return "easycc.reload";
+        return Main.PLUGIN.getMainConfig().getPermission("reload");
     }
 
     @Override

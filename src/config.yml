@@ -52,7 +52,6 @@ message:
   no-permission: '&7You don''t have permission to use this command!'
   command-on-cooldown: '&7You have to wait &2%timeformatted% &7to use &2%command%&7 again'
 permission:
+  use: 'easycc.admin'
   reload: 'easycc.admin'
-  add: 'easycc.admin'
   help: 'easycc.admin'
-

@@ -21,6 +21,8 @@ public class PlayerPreCommandListener implements Listener {
 
     @EventHandler()
     public void onPlayerPreCommand(PlayerCommandPreprocessEvent event){
+        //This could be done later, however as this list is most likely shorter than the list of players
+        //we execute this first to continue if the executed command is not included in cooldowns.
         //check if command is included in cooldowns
         CooldownCommand cooldownCommand = null;
         for (CooldownCommand cmd : Main.PLUGIN.getMainConfig().getCommands()) {
@@ -29,23 +31,29 @@ public class PlayerPreCommandListener implements Listener {
                 break;
             }
         }
-        //command is not on cooldown, exit check
+        //command is not on cooldown, exit. As said above, fast check beforehand.
         if(cooldownCommand == null) return;
 
 
         //check if player can bypass cooldown for this command
+        //check if the player has a bypass to prevent running through the list
         Player player = event.getPlayer();
         if(player.hasPermission(cooldownCommand.getBypass())) return;
 
         //is player already on cooldown?
+        //now that we know this command has to be checked and the player has no bypass perms we can check
+        //if he is already on cooldown
         for(PlayerCooldown pcd : Main.COOLDOWNS){
+            //player in cooldown?
             if(pcd.getPlayerName().equals(player.getName())){
+                //player has this specific command on cooldown?
                 if(event.getMessage().startsWith(pcd.getCommand())){
+                    //dafety check, cooldown not over
                     if(pcd.getEarliestExecution() > System.currentTimeMillis()){
                         player.spigot().sendMessage(
                                 TextComponent.fromLegacyText(
-                                        Main.PLUGIN.getMainConfig().getMessage(EasyMessage.PLUGIN_PREFIX)
-                                      + EasyUtil.formatTime(Main.PLUGIN.getMainConfig().getMessage(EasyMessage.COMMAND_ON_COOLDOWN),
+                                        Main.PLUGIN.getMainConfig().getMessage(Main.PLUGIN.getMainConfig().getMessage("plugin_prefix"))
+                                      + EasyUtil.formatTime(Main.PLUGIN.getMainConfig().getMessage("command-on-cooldown"),
                                                 pcd.getEarliestExecution()-System.currentTimeMillis(),
                                                 EasyTimeFormat.HMS).replace("%command%",pcd.getCommand())));
 
@@ -56,7 +64,7 @@ public class PlayerPreCommandListener implements Listener {
             }
         }
 
-        //player not on cooldown, get cooldown for player
+        //get the cooldown for the command, init with highest in case no perms at all
         int cooldown = cooldownCommand.getHighestCooldown();
         for(Map.Entry<Integer,String> entry : cooldownCommand.getCooldowns().entrySet()){
             if(player.hasPermission(entry.getValue())){
@@ -66,6 +74,7 @@ public class PlayerPreCommandListener implements Listener {
         }
 
         //add player to cooldownlist
+        //put player in list, and remove after cooldown (async)
         PlayerCooldown playerCooldown = new PlayerCooldown(player.getName(),cooldownCommand.getExecution(),System.currentTimeMillis(),cooldown);
         Main.COOLDOWNS.add(playerCooldown);
         Bukkit.getScheduler().runTaskLaterAsynchronously(Main.PLUGIN, new BukkitRunnable(){

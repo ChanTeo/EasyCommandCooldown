@@ -1,7 +1,7 @@
 package me.easyplugins.commandcooldown.command;
 
 
-import me.easyplugins.commandcooldown.handle.EasyPermission;
+import me.easyplugins.commandcooldown.Main;
 import me.easyplugins.commandcooldown.util.EasyCommand;
 import me.easyplugins.commandcooldown.util.EasySubCommand;
 import org.bukkit.command.CommandSender;
@@ -9,10 +9,11 @@ import org.bukkit.command.CommandSender;
 import java.util.Arrays;
 import java.util.List;
 
+
 public class BaseCommand extends EasyCommand {
 
     public BaseCommand() {
-        super("easycommand", EasyPermission.get("reload"), new String[]{"easycc"});
+        super("easycommand", Main.PLUGIN.getMainConfig().getPermission("use"), new String[]{"easycc"});
     }
 
     @Override
@@ -33,8 +34,7 @@ public class BaseCommand extends EasyCommand {
     public List<EasySubCommand> subCommands() {
         return Arrays.asList(
                 new ReloadSubCommand(),
-                new HelpSubCommand(),
-                new AddSubCommand()
+                new HelpSubCommand()
         );
     }
 }

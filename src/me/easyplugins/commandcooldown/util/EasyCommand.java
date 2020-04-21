@@ -10,7 +10,10 @@ import org.bukkit.command.TabExecutor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ * EasyPlugin implementation of Command.
+ * Async execution, tabexecution
+ */
 public abstract class EasyCommand extends org.bukkit.command.Command implements TabExecutor, CommandExecutor {
 
     private List<EasySubCommand> subCommands = new ArrayList<>();
@@ -60,7 +63,9 @@ public abstract class EasyCommand extends org.bukkit.command.Command implements 
             return null;
         }else{
             List<String> tabCompletions = this.onTabComplete(sender,args);
-            if(this.subCommands != null) this.subCommands.forEach(easySubCommand -> tabCompletions.add(easySubCommand.getName()));
+            if(this.subCommands != null) this.subCommands.forEach(easySubCommand ->{
+               if(sender.hasPermission(easySubCommand.getPermission())) tabCompletions.add(easySubCommand.getName());
+            } );
             if(tabCompletions != null){
                 return tabCompletions;
             }else if (args.length != 0){
