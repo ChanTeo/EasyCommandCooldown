@@ -13,7 +13,7 @@ public class EasyUtil {
      * @param message Text to format (include %time% or %timeformatted%)
      * @param timeinMillis Time (Duration) in milliseconds
      * @param timeFormat Rounded down to each Format. HMS for full format.
-     * @return
+     * @return returns formatted timestring
      */
     public static String formatTime(String message, long timeinMillis, EasyTimeFormat timeFormat){
         switch(timeFormat){
@@ -39,17 +39,24 @@ public class EasyUtil {
                 return formatTime(message,timeinMillis,EasyTimeFormat.SECONDS);
         }
 
-
         return "";
     }
 
+    /**
+     * Replaces "&" with "§"
+     * @param text
+     * @return colorized Text
+     */
     public static String colorize(String text){
         return ChatColor.translateAlternateColorCodes('&',text);
     }
 
-
+    /**
+     * Converts a timespan in milliseonds into its hours, minutes and seconds
+     * @param timeinMillis timespan in milliseconds
+     * @return returns in order: seconds, minutes, hours
+     */
     private static long[] getRemainingTimeFormatted(long timeinMillis) {
-
         long[] times = new long[3];
 
         long duration = timeinMillis/1000;
@@ -65,12 +72,24 @@ public class EasyUtil {
         return times;
     }
 
-    private static String getMulti(long value, String single, String multi, boolean blankZeo){
-        if(value == 0 && blankZeo) return "";
+    /**
+     * Format a string based on a value.
+     * @param value Value to check for multi
+     * @param single String for single
+     * @param multi String for multi
+     * @param blankZero if true returns empty string
+     * @return returns either one or the other String
+     */
+    private static String getMulti(long value, String single, String multi, boolean blankZero){
+        if(value == 0 && blankZero) return "";
         if(value > 1) return value + " " + multi;
         return value + " " + single;
     }
 
+    /**
+     * Register an EasyCommand
+     * @param easyCommand EasyCommand to register
+     */
     public static void registerCommand(EasyCommand easyCommand){
         try{
             Field bukkitCommandMap = Bukkit.getServer().getClass().getDeclaredField("commandMap");

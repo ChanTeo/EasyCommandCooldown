@@ -15,8 +15,7 @@
 # COMMANDS
 #
 # command:
-#   1:              [number]         Has to be numerical, used as an iterator. No duplicates!
-#     execution:    ['text']         This is the command for which you want a cooldown. No duplicates!
+#   execution:      ['text']         This is the command for which you want a cooldown. No duplicates!
 #     bypass:       ['text']         This is the permission to have "0" cooldown/bypass
 #     cooldowns:
 #       25:         [number:'text']  Number in seconds and the permission needed. You can
@@ -39,8 +38,7 @@ general:
   version: 1.0
   useStatistics: true;
 command:
-  1:
-    execution: '/easycc'
+  'easycc help':
     bypass: 'easycc.admin'
     cooldowns:
       15: 'easycc.default'

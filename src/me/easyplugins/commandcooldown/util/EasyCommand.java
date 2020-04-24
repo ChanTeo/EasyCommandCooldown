@@ -1,6 +1,6 @@
 package me.easyplugins.commandcooldown.util;
 
-import me.easyplugins.commandcooldown.Main;
+import me.easyplugins.commandcooldown.EasyCommandCooldown;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -47,7 +47,7 @@ public abstract class EasyCommand extends org.bukkit.command.Command implements 
             return true;
         }else{
             try{
-                Bukkit.getScheduler().runTaskAsynchronously(Main.PLUGIN, ()->{
+                Bukkit.getScheduler().runTaskAsynchronously(EasyCommandCooldown.PLUGIN, ()->{
                     this.onExecute(sender,args);
                 });
                 return true;

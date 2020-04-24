@@ -1,7 +1,7 @@
 package me.easyplugins.commandcooldown.command;
 
 import me.easyplugins.commandcooldown.EasyConfig;
-import me.easyplugins.commandcooldown.Main;
+import me.easyplugins.commandcooldown.EasyCommandCooldown;
 import me.easyplugins.commandcooldown.util.EasySubCommand;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ReloadSubCommand extends EasySubCommand {
 
-    private EasyConfig config = Main.PLUGIN.getMainConfig();
+    private EasyConfig config = EasyCommandCooldown.PLUGIN.getMainConfig();
 
     public ReloadSubCommand() {
         super("reload", 0, 0);
@@ -23,7 +23,7 @@ public class ReloadSubCommand extends EasySubCommand {
 
     @Override
     public String getPermission() {
-        return Main.PLUGIN.getMainConfig().getPermission("reload");
+        return EasyCommandCooldown.PLUGIN.getMainConfig().getPermission("reload");
     }
 
     @Override

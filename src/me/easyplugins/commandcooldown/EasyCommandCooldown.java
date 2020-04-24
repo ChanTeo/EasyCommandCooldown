@@ -13,9 +13,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main extends JavaPlugin {
+public class EasyCommandCooldown extends JavaPlugin {
 
-    public static Main PLUGIN;
+    public static EasyCommandCooldown PLUGIN;
     public static List<PlayerCooldown> COOLDOWNS = new ArrayList<>();
     private EasyConfig config;
 

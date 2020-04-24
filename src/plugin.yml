@@ -1,5 +1,5 @@
 name: EasyCommandCooldown
-main: me.easyplugins.commandcooldown.Main
+main: me.easyplugins.commandcooldown.EasyCommandCooldown
 description: "EasyCommandCooldown enables you to set a cooldown for each and every command."
 version: 1.0
 author: ChanTeo

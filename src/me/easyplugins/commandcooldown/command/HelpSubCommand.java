@@ -1,6 +1,6 @@
 package me.easyplugins.commandcooldown.command;
 
-import me.easyplugins.commandcooldown.Main;
+import me.easyplugins.commandcooldown.EasyCommandCooldown;
 import me.easyplugins.commandcooldown.util.EasySubCommand;
 import org.bukkit.command.CommandSender;
 
@@ -19,7 +19,7 @@ public class HelpSubCommand extends EasySubCommand {
 
     @Override
     public String getPermission() {
-        return Main.PLUGIN.getMainConfig().getPermission("help");
+        return EasyCommandCooldown.PLUGIN.getMainConfig().getPermission("help");
     }
 
     @Override
