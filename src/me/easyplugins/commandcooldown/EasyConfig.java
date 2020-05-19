@@ -71,7 +71,7 @@ public class EasyConfig {
         return EasyUtil.colorize(internalPrefix);
     }
 
-    String getPluginEnabled() {
+    public String getPluginEnabled() {
         return pluginEnabled;
     }
 
