@@ -45,20 +45,18 @@ public class PlayerPreCommandListener implements Listener {
         // if he is already on cooldown
         for(PlayerCooldown pcd : EasyCommandCooldown.COOLDOWNS){
             // player in cooldown?
-            if(pcd.getPlayerName().equals(player.getName())){
-                // player has this specific command on cooldown?
-                if(event.getMessage().startsWith(pcd.getCommand())&& pcd.getEarliestExecution() > System.currentTimeMillis()){
-                    // safety check, cooldown not over
-                        player.spigot().sendMessage(
-                                TextComponent.fromLegacyText(
-                                        EasyCommandCooldown.PLUGIN.getMainConfig().getMessage(EasyCommandCooldown.PLUGIN.getMainConfig().getMessage("plugin_prefix"))
-                                      + EasyUtil.formatTime(EasyCommandCooldown.PLUGIN.getMainConfig().getMessage("command-on-cooldown"),
-                                                pcd.getEarliestExecution()-System.currentTimeMillis(),
-                                                EasyTimeFormat.HMS).replace("%command%",pcd.getCommand())));
-
-                        event.setCancelled(true);
-                        return;
-                }
+            // player has this specific command on cooldown?
+            // safety check, cooldown not over
+            if(pcd.getPlayerName().equals(player.getName()) && event.getMessage().startsWith(pcd.getCommand()) && pcd.getEarliestExecution() > System.currentTimeMillis()){
+                player.spigot().sendMessage(
+                        TextComponent.fromLegacyText(
+                            EasyCommandCooldown.PLUGIN.getMainConfig().getMessage(EasyCommandCooldown.PLUGIN.getMainConfig().getMessage("plugin_prefix"))
+                            + EasyUtil.formatTime(EasyCommandCooldown.PLUGIN.getMainConfig().getMessage("command-on-cooldown"),
+                                                    pcd.getEarliestExecution()-System.currentTimeMillis(),
+                                                    EasyTimeFormat.HMS).replace("%command%",pcd.getCommand()))
+                );
+                event.setCancelled(true);
+                return;
             }
         }
 
