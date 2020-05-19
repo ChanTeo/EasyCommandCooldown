@@ -2,11 +2,11 @@ package me.easyplugins.commandcooldown.handle;
 
 public class PlayerCooldown {
 
-    String playerName;
-    String command;
-    Long lastExecution;
-    Long cooldown;
-    Long earliestExecution;
+    private String playerName;
+    private String command;
+    private Long lastExecution;
+    private Long cooldown;
+    private Long earliestExecution;
 
 
     public PlayerCooldown(String playerName, String command,long lastExecution, long cooldown){
