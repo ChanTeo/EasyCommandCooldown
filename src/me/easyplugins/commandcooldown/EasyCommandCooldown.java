@@ -25,7 +25,6 @@ public class EasyCommandCooldown extends JavaPlugin {
         config = new EasyConfig();
         config.init();
         Bukkit.getConsoleSender().sendMessage(EasyUtil.colorize(config.getPluginEnabled()));
-        if(config.getUseStatistics()) new Metrics(this);
         registerListener();
         registerCommands();
     }
