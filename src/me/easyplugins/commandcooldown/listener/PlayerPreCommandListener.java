@@ -47,9 +47,8 @@ public class PlayerPreCommandListener implements Listener {
             // player in cooldown?
             if(pcd.getPlayerName().equals(player.getName())){
                 // player has this specific command on cooldown?
-                if(event.getMessage().startsWith(pcd.getCommand())){
+                if(event.getMessage().startsWith(pcd.getCommand())&& pcd.getEarliestExecution() > System.currentTimeMillis()){
                     // safety check, cooldown not over
-                    if(pcd.getEarliestExecution() > System.currentTimeMillis()){
                         player.spigot().sendMessage(
                                 TextComponent.fromLegacyText(
                                         EasyCommandCooldown.PLUGIN.getMainConfig().getMessage(EasyCommandCooldown.PLUGIN.getMainConfig().getMessage("plugin_prefix"))
@@ -59,7 +58,6 @@ public class PlayerPreCommandListener implements Listener {
 
                         event.setCancelled(true);
                         return;
-                    }
                 }
             }
         }
