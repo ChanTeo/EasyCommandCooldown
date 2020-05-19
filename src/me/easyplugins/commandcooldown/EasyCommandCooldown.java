@@ -3,7 +3,6 @@ package me.easyplugins.commandcooldown;
 import me.easyplugins.commandcooldown.command.BaseCommand;
 import me.easyplugins.commandcooldown.handle.PlayerCooldown;
 import me.easyplugins.commandcooldown.listener.PlayerPreCommandListener;
-import me.easyplugins.commandcooldown.metric.Metrics;
 import me.easyplugins.commandcooldown.util.EasyUtil;
 import org.bukkit.Bukkit;
 
