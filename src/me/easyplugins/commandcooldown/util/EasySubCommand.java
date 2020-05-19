@@ -76,9 +76,6 @@ public abstract class EasySubCommand {
         FAILURE_WRONG_NAME,
         FAILURE_WRONG_ARGS_LENGTH,
         SUCCESS;
-
-        private ConditionResult() {
-        }
     }
 
 
