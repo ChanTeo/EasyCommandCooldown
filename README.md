@@ -10,12 +10,8 @@ It relies on an easy to understand configuration file.
 
 ## Information
 
-
-
 ### Commands
-
 ```/easycc reload``` The only Command. Reload the configuration on runtime for easy file-editing and updating.
-
 
 ### Permission
 ```easycc.admin``` the only hardcoded permission. Only used for the ```/reload``` command
@@ -67,6 +63,4 @@ message:
 ```
 ### Good to know
 The plugin works well with every permission plugin. You can enter your own permission or an existing permission for each cooldown and
-can add as many cooldowns per command as you like. This makes the plugin extremely easy to setup as you don't have to mess arround with
-your existing permissions and can just simply enter an existing one.
-
+can add as many cooldowns per command as you like. This makes the plugin extremely easy to setup as you don't have to mess arround with your existing permissions and can just simply enter an existing one.
