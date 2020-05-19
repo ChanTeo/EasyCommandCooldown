@@ -25,7 +25,7 @@ public class EasyUtil {
                 return message.replace("%time%",getMulti((timeinMillis/1000)/60,"min","mins",false)).replace("%timeformatted%",getMulti((timeinMillis%1000)%60,"min","mins",false));
             case HOURS:
                 return message.replace("%time%",getMulti((timeinMillis/1000)/3600,"hr","hrs",false)).replace("%timeformatted%",getMulti((timeinMillis%1000)%3600,"hr","hrs",false));
-            case HMS:
+            default:
                 if(message.contains("%timeformatted%")){
                     StringBuilder sb = new StringBuilder();
                     long[] times = getRemainingTimeFormatted(timeinMillis);
