@@ -11,7 +11,6 @@ import java.util.*;
 public class EasyConfig {
 
     private final Set<CooldownCommand> commands = new HashSet<>();
-    private Boolean useStatistics;
     private Map<String, String> messages = new HashMap<>();
     private Map<String, String> permissions = new HashMap();
 
@@ -24,7 +23,6 @@ public class EasyConfig {
 
     public void init(){
         EasyCommandCooldown.PLUGIN.getConfig().options().copyDefaults(true);
-        useStatistics = EasyCommandCooldown.PLUGIN.getConfig().getBoolean("general.usestatistics",true);
         commands.clear();
         EasyCommandCooldown.PLUGIN.saveConfig();
         loadCollections();
@@ -77,10 +75,6 @@ public class EasyConfig {
 
     public String getCommandsLoaded() {
         return commandsLoaded;
-    }
-
-    public Boolean getUseStatistics() {
-        return useStatistics;
     }
 
     public String getPermission(String identifier){
