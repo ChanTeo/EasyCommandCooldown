@@ -14,7 +14,7 @@ import java.util.List;
  * EasyPlugin implementation of Command.
  * Async execution, tabexecution
  */
-public abstract class EasyCommand extends org.bukkit.command.Command implements TabExecutor, CommandExecutor {
+public abstract class EasyCommand extends Command implements TabExecutor, CommandExecutor {
 
     private List<EasySubCommand> subCommands = new ArrayList<>();
 
