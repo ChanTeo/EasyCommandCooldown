@@ -3,7 +3,7 @@ Minecraft Spigot Plugin to add cooldowns to any command.
 
 # Overview
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c5ad8fcfad214afea803199a731f225a)](https://app.codacy.com/manual/ChanTeo/EasyCommandCooldown?utm_source=github.com&utm_medium=referral&utm_content=ChanTeo/EasyCommandCooldown&utm_campaign=Badge_Grade_Dashboard)[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Discord](https://img.shields.io/discord/699992454912409660?label=Discord&logo=Discord&logoColor=ffffff&color=6A7EC2)](https://discord.gg/3spxuQ)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/236f2171c6bb4e4280b1b87a2e3a9d0c)](https://app.codacy.com/gh/ChanTeo/EasyCommandCooldown/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Discord](https://img.shields.io/discord/699992454912409660?label=Discord&logo=Discord&logoColor=ffffff&color=6A7EC2)](https://discord.gg/3spxuQ)
 
 Command Cooldown was made to give Serverowners who rely on third Party Plugins the opportunity
 to add cooldowns to every command.
